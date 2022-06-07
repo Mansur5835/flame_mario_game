@@ -1,5 +1,6 @@
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
+import 'package:flame_game_mario/views/victory.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/enums.dart';
@@ -28,6 +29,9 @@ class GamePage extends StatelessWidget {
             overlayBuilderMap: {
               "game_over": (context, MarioGame mario) {
                 return GameOverWidget();
+              },
+              "victory": (context, MarioGame mario) {
+                return Victory();
               },
             }),
         Container(

@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flame/assets.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';

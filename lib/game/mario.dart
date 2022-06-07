@@ -22,6 +22,7 @@ class Mario extends SpriteAnimationComponent with HasGameRef {
   late SpriteAnimation spriteAnimationHitL;
   late SpriteAnimation spriteAnimationArrowR;
   late SpriteAnimation spriteAnimationArrowL;
+  late SpriteAnimation spriteAnimationVictory;
 
   @override
   Future<void>? onLoad() async {
@@ -93,6 +94,13 @@ class Mario extends SpriteAnimationComponent with HasGameRef {
       stepTime: 0.05,
       from: 22,
       to: 23,
+    );
+
+    spriteAnimationVictory = spriteSheet.createAnimation(
+      row: 0,
+      stepTime: 0.05,
+      from: 21,
+      to: 22,
     );
 
     animation = spriteAnimationToNoneR;

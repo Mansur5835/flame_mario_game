@@ -7,6 +7,7 @@ import 'package:flame_game_mario/game/gift_animation.dart';
 import 'package:flame_game_mario/game/enemy.dart';
 import 'package:flame_game_mario/game/heart.dart';
 import 'package:flame_game_mario/game/mario.dart';
+import 'package:flame_game_mario/game/tower.dart';
 import 'package:flutter/material.dart';
 import '../constants/enums.dart';
 
@@ -37,6 +38,7 @@ class MarioGame extends FlameGame {
   Box box = Box();
   Coin coin = Coin();
   Enemy enemy = Enemy();
+  Tower tower = Tower();
 
   double marioSpeedY = 15;
   final textStyle = TextPaint(
@@ -57,6 +59,7 @@ class MarioGame extends FlameGame {
     add(parallax1);
     add(parallax2);
     add(arrow);
+    add(tower);
 
     add(mario);
     add(enemy);
@@ -218,12 +221,14 @@ class MarioGame extends FlameGame {
       box.x -= 3.5;
       giftAnimation.x -= 3.5;
       enemy.x -= 3.5;
+      tower.x -= 3.5;
     } else if (mario.direction == DirectionRun.left) {
       parallax1.x += 3.5;
       parallax2.x += 3.5;
       box.x += 3.5;
       giftAnimation.x += 3.5;
       enemy.x += 3.5;
+      tower.x += 3.5;
     }
 
     if (mario.x > enemy.x - 20 &&
@@ -232,6 +237,10 @@ class MarioGame extends FlameGame {
       if (hiting) {
         _marioHit();
       }
+    }
+
+    if (tower.x + 100 < mario.x) {
+      _marioVictory();
     }
 
     if (mario.x > enemy.x - 20 &&
@@ -431,5 +440,12 @@ class MarioGame extends FlameGame {
 
   startMove() {
     end = false;
+  }
+
+  _marioVictory() async {
+    gameOver = true;
+    mario.animation = mario.spriteAnimationVictory;
+    await Future.delayed(Duration(seconds: 2));
+    overlays.add("victory");
   }
 }
